@@ -11,6 +11,7 @@ const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
     imageUrl: "",
     description: "",
   });
+  const [error, setError] = useState("");
 
   const { blogs, setBlogs } = useBlogsContext();
 
@@ -25,6 +26,19 @@ const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
   };
 
   const submitHandler = async () => {
+    if (!newBlog.title.trim()) {
+      setError("Title is required!");
+      return;
+    }
+    if (!newBlog.imageUrl.trim()) {
+      setError("Image URL is required!");
+      return;
+    }
+    if (!newBlog.description.trim()) {
+      setError("Description required!");
+      return;
+    }
+
     const newBlogObject = new BlogObject(newBlog);
     await postApiData(newBlogObject);
     await pageNavigator("/blog/" + newBlogObject.id);
@@ -81,6 +95,7 @@ const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
             onChange={(v) => onChangeHandler("description", v)}
             autoComplete="off"
           />
+          {error && <span className="text-red-700 text-center">{error}</span>}
         </FormLayout>
       </Modal.Section>
     </Modal>

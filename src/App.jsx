@@ -11,6 +11,7 @@ import { BlogsContext } from "./context/BlogsContext";
 import { getApiData } from "./services/api";
 
 import RootLayout from "./components/RootLayout";
+import Page404 from "./components/LoadEmptyState/Page404";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -46,11 +47,13 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<BlogList />} />
+        <Route path="blog/" element={<BlogList />} />
         <Route
           path="blog/:id"
           element={<BlogPage blogs={blogs} />}
           loader={blogPageLoader}
         ></Route>
+        <Route path="*" element={<Page404 />} />
       </Route>
     )
   );

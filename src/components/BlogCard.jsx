@@ -6,7 +6,7 @@ import truncateText from "../utils/truncateText";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import useBlogsContext from "../hooks/useBlogsContext";
-import { deleteApiData } from "../services/api";
+import { deleteApiData, updateApiData } from "../services/api";
 import { DeleteModal } from "./Modals/DeleteModal";
 import { useState } from "react";
 import EditBlogModal from "./Modals/EditBlogModal";
@@ -21,6 +21,19 @@ const BlogCard = ({ blog }) => {
 
   const openFullPage = (id) => {
     pageNavigator(`/blog/${id}`);
+  };
+
+  const totalViewUpdate = async () => {
+    const updatedObj = { ...blog, views: blog.views + 1 };
+    await updateApiData({ views: blog.views + 1 }, blog.id);
+    setBlogs(
+      blogs.map((item) => {
+        if (item.id === blog.id) {
+          return updatedObj;
+        }
+        return item;
+      })
+    );
   };
 
   const deleteHandler = async (id) => {
@@ -57,6 +70,7 @@ const BlogCard = ({ blog }) => {
             secondaryAction={{
               content: "Learn more",
               onAction: () => {
+                totalViewUpdate();
                 openFullPage(blog.id);
               },
             }}

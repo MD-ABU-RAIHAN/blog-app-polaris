@@ -11,18 +11,33 @@ import {
   ChatIcon,
   EyeCheckMarkIcon,
 } from "@shopify/polaris-icons";
+import { useState } from "react";
+import { updateApiData } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const SocialIcon = ({ blog }) => {
+  const [stateBlog, setStateBlog] = useState(blog);
+
+  const pageNavigator = useNavigate();
+
+  const likeHandler = async () => {
+    const updatedObject = { ...stateBlog, likes: stateBlog.likes + 1 };
+    setStateBlog(updatedObject);
+    await updateApiData({ likes: stateBlog.likes + 1 }, updatedObject.id);
+  };
+
   return (
     <InlineStack gap="200" align="center">
       <Tooltip content="Like">
         <Button
           icon={<Icon source={ThumbsUpIcon} tone="success" />}
           variant="tertiary"
-          onClick={() => {}}
+          onClick={() => {
+            likeHandler();
+          }}
         >
           <Text as="span" tone="subdued">
-            {blog.likes}
+            {stateBlog.likes}
           </Text>
         </Button>
       </Tooltip>
@@ -31,10 +46,12 @@ const SocialIcon = ({ blog }) => {
         <Button
           icon={<Icon source={ChatIcon} />}
           variant="tertiary"
-          onClick={() => {}}
+          onClick={() => {
+            pageNavigator(`/blog/${blog.id}`);
+          }}
         >
           <Text as="span" tone="subdued">
-            {blog.comments.length}
+            {stateBlog.comments.length}
           </Text>
         </Button>
       </Tooltip>
@@ -46,7 +63,7 @@ const SocialIcon = ({ blog }) => {
           onClick={() => {}}
         >
           <Text as="span" tone="subdued">
-            {blog.views}
+            {stateBlog.views}
           </Text>
         </Button>
       </Tooltip>
