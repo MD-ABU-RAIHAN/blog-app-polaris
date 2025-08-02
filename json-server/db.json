@@ -1,0 +1,129 @@
+{
+  "blogs": [
+    {
+      "id": "1",
+      "title": "Getting Started with Shopify Polaris",
+      "description": "Learn how to build beautiful React applications using Shopify Polaris design system. This comprehensive guide covers components, hooks, and best practices.",
+      "imageUrl": "https://burst.shopifycdn.com/photos/business-woman-smiling-in-office.jpg?width=1850",
+      "likes": 24,
+      "views": 156,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "comments": [
+        {
+          "id": "1754065840675",
+          "commenterName": "aaa",
+          "comment": "23232442",
+          "createdAt": "2025-08-01T16:30:40.675Z"
+        },
+        {
+          "id": "101",
+          "commenterName": "John Doe",
+          "comment": "Great article! Really helped me understand Polaris better.",
+          "createdAt": "2024-01-15T14:30:00Z"
+        },
+        {
+          "id": "102",
+          "commenterName": "Sarah Smith",
+          "comment": "The examples were very clear and easy to follow. Thanks!",
+          "createdAt": "2024-01-16T09:15:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Building Responsive E-commerce UIs",
+      "description": "Discover how to create responsive and accessible e-commerce interfaces using Tailwind CSS and Shopify Polaris components.",
+      "imageUrl": "https://burst.shopifycdn.com/photos/laptop-from-above.jpg?width=1850",
+      "likes": 18,
+      "views": 89,
+      "createdAt": "2024-01-14T08:20:00Z",
+      "comments": [
+        {
+          "id": "103",
+          "commenterName": "Mike Johnson",
+          "comment": "This is exactly what I was looking for! Very helpful.",
+          "createdAt": "2024-01-14T10:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Modern State Management in React",
+      "description": "Explore different state management approaches in React applications, from useState to complex state management libraries.",
+      "imageUrl": "https://images.unsplash.com/photo-1744194210914-0f5b2375645d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "likes": 32,
+      "views": 203,
+      "createdAt": "2024-01-13T15:45:00Z",
+      "comments": [
+        {
+          "id": "104",
+          "commenterName": "Emily Chen",
+          "comment": "Great explanation of state management concepts!",
+          "createdAt": "2024-01-13T18:20:00Z"
+        },
+        {
+          "id": "105",
+          "commenterName": "David Wilson",
+          "comment": "The comparisons between different approaches were very helpful.",
+          "createdAt": "2024-01-14T11:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "1754027994517",
+      "title": "Excepteur nemo illo ",
+      "description": "Velit pariatur Ipsu",
+      "imageUrl": "https://images.unsplash.com/photo-1601134991665-a020399422e3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "likes": 0,
+      "views": 0,
+      "createdAt": "2025-08-01T05:59:54.517Z",
+      "comments": []
+    },
+    {
+      "id": "1754047214105",
+      "title": "Totam porro nostrum ",
+      "description": "Vitae obcaecati ut e",
+      "imageUrl": "https://images.unsplash.com/photo-1582883693742-5d25fbef2c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "likes": 0,
+      "views": 0,
+      "createdAt": "2025-08-01T11:20:14.105Z",
+      "comments": [
+        {
+          "id": "1754077453799",
+          "commenterName": "HI",
+          "comment": "Hello",
+          "createdAt": "2025-08-01T19:44:13.799Z"
+        }
+      ]
+    },
+    {
+      "id": "1754047244773",
+      "title": "Dolorum eius ipsam v",
+      "description": "Dolor dolor praesent",
+      "imageUrl": "https://images.unsplash.com/photo-1533536201350-93ebe24101f5?q=80&w=683&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "likes": 0,
+      "views": 0,
+      "createdAt": "2025-08-01T11:20:44.773Z",
+      "comments": [
+        {
+          "id": "1754129298185",
+          "commenterName": "Inventore ipsam unde",
+          "comment": "Voluptatem quae qui",
+          "createdAt": "2025-08-02T10:08:18.185Z"
+        },
+        {
+          "id": "1754129293367",
+          "commenterName": "Culpa recusandae A",
+          "comment": "Dolore ipsam dolor r",
+          "createdAt": "2025-08-02T10:08:13.367Z"
+        },
+        {
+          "id": "1754129287698",
+          "commenterName": "Nobis animi ut aut ",
+          "comment": "Do dolore quia tempo",
+          "createdAt": "2025-08-02T10:08:07.698Z"
+        }
+      ]
+    }
+  ]
+}
