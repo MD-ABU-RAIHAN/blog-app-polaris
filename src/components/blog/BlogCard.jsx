@@ -94,7 +94,10 @@ const BlogCard = ({ blog }) => {
             <Box>
               <img
                 onClick={() => openFullPage(blog.id)}
+<<<<<<< HEAD:src/components/blog/BlogCard.jsx
                 alt={blog.title}
+=======
+>>>>>>> 76d0f7495a37b677b6992e0447c47763959de4a3:src/components/BlogCard.jsx
                 src={blog.imageUrl}
                 className="w-full h-64 object-cover cursor-pointer hover:opacity-80 duration-300"
               />
