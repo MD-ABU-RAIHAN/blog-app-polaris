@@ -1,4 +1,4 @@
-import { MediaCard, Box, Text } from "@shopify/polaris";
+import { MediaCard, Box, Text, Link, Button } from "@shopify/polaris";
 import { DeleteIcon, EditIcon } from "@shopify/polaris-icons";
 
 import SocialIcon from "./SocialIcon";
@@ -65,7 +65,13 @@ const BlogCard = ({ blog }) => {
       {
         <Box position="relative">
           <MediaCard
-            title={truncateText(blog.title, 50)}
+            title={
+              <Button variant="plain" onClick={() => openFullPage(blog.id)}>
+                <Text variant="headingMd" as="h6">
+                  {truncateText(blog.title, 50)}
+                </Text>
+              </Button>
+            }
             description={truncateText(blog.description, 250)}
             secondaryAction={{
               content: "Learn more",
@@ -93,11 +99,15 @@ const BlogCard = ({ blog }) => {
             ]}
           >
             <Box>
-              <img src={blog.imageUrl} className="w-full h-64 object-cover" />
+              <img
+                onClick={() => openFullPage(blog.id)}
+                src={blog.imageUrl}
+                className="w-full h-64 object-cover cursor-pointer hover:opacity-80 duration-300"
+              />
             </Box>
           </MediaCard>
           {/* Social icons overlay */}
-          <div className="absolute bottom-3 right-3 flex ">
+          <div className="absolute bottom-3 right-3 fl`ex ">
             <SocialIcon blog={blog} />
           </div>
         </Box>
