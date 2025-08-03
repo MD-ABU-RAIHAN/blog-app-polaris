@@ -1,8 +1,9 @@
 import { Page } from "@shopify/polaris";
 import Navbar from "./Navbar";
-import useBlogsContext from "../hooks/useBlogsContext";
 import { Outlet } from "react-router-dom";
-import SpinnerExample from "./LoadEmptyState/Spinner";
+import useBlogsContext from "../../hooks/useBlogsContext";
+import LoadingSpinner from "../LoadEmptyState/Spinner";
+import EmptyBlog from "./../LoadEmptyState/EmptyBlog";
 
 const RootLayout = () => {
   const { isShowSpinner, isShowEmptyBlog } = useBlogsContext();
@@ -12,7 +13,7 @@ const RootLayout = () => {
 
       {!isShowEmptyBlog ? (
         isShowSpinner ? (
-          <SpinnerExample />
+          <LoadingSpinner />
         ) : (
           <Outlet />
         )

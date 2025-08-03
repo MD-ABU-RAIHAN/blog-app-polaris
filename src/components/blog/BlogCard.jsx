@@ -1,15 +1,15 @@
-import { MediaCard, Box, Text } from "@shopify/polaris";
+import { MediaCard, Box, Text, Link, Button } from "@shopify/polaris";
 import { DeleteIcon, EditIcon } from "@shopify/polaris-icons";
 
-import SocialIcon from "./SocialIcon";
-import truncateText from "../utils/truncateText";
+import SocialIcon from "../SocialIcon";
+import truncateText from "../../utils/truncateText";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import useBlogsContext from "../hooks/useBlogsContext";
-import { deleteApiData, updateApiData } from "../services/api";
-import { DeleteModal } from "./Modals/DeleteModal";
-import { useState } from "react";
-import EditBlogModal from "./Modals/EditBlogModal";
+import useBlogsContext from "../../hooks/useBlogsContext";
+import { deleteApiData, updateApiData } from "../../services/api";
+import { DeleteModal } from "../Modals/DeleteModal";
+import { useCallback, useState } from "react";
+import EditBlogModal from "../Modals/EditBlogModal";
 
 const BlogCard = ({ blog }) => {
   const [isDeleteModalShow, setIsDeleteModalShow] = useState(false);
@@ -17,28 +17,22 @@ const BlogCard = ({ blog }) => {
 
   const pageNavigator = useNavigate();
 
-  const { blogs, setBlogs } = useBlogsContext();
+  const { blogs, updateBlog } = useBlogsContext();
 
   const openFullPage = (id) => {
     pageNavigator(`/blog/${id}`);
+    totalViewUpdate();
   };
 
-  const totalViewUpdate = async () => {
+  const totalViewUpdate = useCallback(async () => {
     const updatedObj = { ...blog, views: blog.views + 1 };
     await updateApiData({ views: blog.views + 1 }, blog.id);
-    setBlogs(
-      blogs.map((item) => {
-        if (item.id === blog.id) {
-          return updatedObj;
-        }
-        return item;
-      })
-    );
-  };
+    updateBlog(updatedObj);
+  }, [blog.id, blog.views, updateBlog]);
 
   const deleteHandler = async (id) => {
     await deleteApiData(id);
-    setBlogs(blogs.filter((blog) => blog.id !== id));
+    updateBlog(blogs.filter((blog) => blog.id !== id));
   };
 
   const deleteModalOpener = () => {
@@ -65,12 +59,17 @@ const BlogCard = ({ blog }) => {
       {
         <Box position="relative">
           <MediaCard
-            title={truncateText(blog.title, 50)}
+            title={
+              <Button variant="plain" onClick={() => openFullPage(blog.id)}>
+                <Text variant="headingMd" as="h6">
+                  {truncateText(blog.title, 50)}
+                </Text>
+              </Button>
+            }
             description={truncateText(blog.description, 250)}
             secondaryAction={{
               content: "Learn more",
               onAction: () => {
-                totalViewUpdate();
                 openFullPage(blog.id);
               },
             }}
@@ -93,11 +92,16 @@ const BlogCard = ({ blog }) => {
             ]}
           >
             <Box>
-              <img src={blog.imageUrl} className="w-full h-64 object-cover" />
+              <img
+                onClick={() => openFullPage(blog.id)}
+                alt={blog.title}
+                src={blog.imageUrl}
+                className="w-full h-64 object-cover cursor-pointer hover:opacity-80 duration-300"
+              />
             </Box>
           </MediaCard>
           {/* Social icons overlay */}
-          <div className="absolute bottom-3 right-3 flex ">
+          <div className="absolute bottom-3 right-3 fl`ex ">
             <SocialIcon blog={blog} />
           </div>
         </Box>

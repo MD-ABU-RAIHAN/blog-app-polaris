@@ -11,7 +11,7 @@ const EditBlogModal = ({ blog, setIsEditModalShow }) => {
     description: blog.description,
   });
 
-  const { blogs, setBlogs } = useBlogsContext();
+  const { blogs, updateBlog } = useBlogsContext();
 
   const onChangeHandler = (field, value) => {
     setEditBlog({ ...editBlog, [field]: value });
@@ -36,7 +36,7 @@ const EditBlogModal = ({ blog, setIsEditModalShow }) => {
     await updateApiData(afterEditBlog, afterEditBlog.id);
     await pageNavigator("/blog/" + afterEditBlog.id);
 
-    setBlogs(afterEditBlogs);
+    updateBlog(afterEditBlogs);
     setIsEditModalShow(false);
   };
 

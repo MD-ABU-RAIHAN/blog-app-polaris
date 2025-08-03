@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import BlogList from "./components/BlogList";
-import BlogPage, { blogPageLoader } from "./components/BlogPage";
+
+import BlogPage, { blogPageLoader } from "./components/blog/BlogPage";
 import { BlogsContext } from "./context/BlogsContext";
 import { getApiData } from "./services/api";
 
-import RootLayout from "./components/RootLayout";
 import Page404 from "./components/LoadEmptyState/Page404";
+import BlogList from "./components/blog/BlogList";
+import RootLayout from "./components/layout/RootLayout";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -19,7 +20,7 @@ const App = () => {
   const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [isShowEmptyBlog, setIsShowEmptyBlog] = useState(false);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       setIsShowSpinner(true);
       const data = await getApiData();
@@ -35,13 +36,12 @@ const App = () => {
     } catch (error) {
       console.log("Server Not Found >>", error);
     }
-  };
+  }, []);
 
   // Fast time Generate API GET Call
   useEffect(() => {
-    (async () => await getData())();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    getData();
+  }, [getData]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -58,11 +58,20 @@ const App = () => {
     )
   );
 
+  // eslint-disable-next-line no-unused-vars
+  const updateBlog = (updatedBlog) => {
+    setBlogs(
+      blogs.map((blog) => (blog.id === updateBlog.id ? updateBlog : blog))
+    );
+    getData();
+  };
+
   return (
     <BlogsContext.Provider
       value={{
         blogs,
         setBlogs,
+        updateBlog,
         getData,
         isShowSpinner,
         isShowEmptyBlog,

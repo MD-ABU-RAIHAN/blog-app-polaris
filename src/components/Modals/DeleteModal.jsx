@@ -1,13 +1,24 @@
 import { Button, Modal, Frame } from "@shopify/polaris";
 
-export function DeleteModal({ id, deleteHandler, setIsDeleteModalShow }) {
+export function DeleteModal({
+  id,
+  deleteHandler,
+  setIsDeleteModalShow,
+  title = "Confirm Deletion",
+  content = "Are you sure you want to delete? This action cannot be undone.",
+}) {
   //   const activator = <Button onClick={toggleModal}>Open</Button>;
-  function closeDeleteModal() {
+  function onClose() {
     setIsDeleteModalShow(false);
   }
-  function confirmCloseDeleteModal() {
-    deleteHandler(id);
-    closeDeleteModal();
+  function confirmDeleteHandler() {
+    try {
+      deleteHandler(id);
+    } catch (error) {
+      console.log("Delete Failed:", error);
+    } finally {
+      onClose();
+    }
   }
 
   return (
@@ -15,25 +26,21 @@ export function DeleteModal({ id, deleteHandler, setIsDeleteModalShow }) {
       //   activator={activator}
       open={true}
       size="small"
-      onClose={closeDeleteModal}
-      title="Discard all unsaved changes"
+      onClose={onClose}
+      title={title}
       primaryAction={{
         destructive: true,
         content: "Delete",
-        onAction: confirmCloseDeleteModal,
+        onAction: confirmDeleteHandler,
       }}
       secondaryActions={[
         {
           content: "Cancel",
-          onAction: closeDeleteModal,
+          onAction: onClose,
         },
       ]}
     >
-      <Modal.Section>
-        Are you sure you want to delete?
-        <br />
-        This action cannot be undone.
-      </Modal.Section>
+      <Modal.Section>{content}</Modal.Section>
     </Modal>
   );
 }

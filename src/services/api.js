@@ -7,13 +7,17 @@ const apiClient = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
+const handleApiError = (error, operation) => {
+  console.log(`${operation} Request Failed >>`, error);
+  throw new Error(`${operation} failed: ${error.message}`);
+};
+
 export const getApiData = async (endpoint = "") => {
   try {
     const res = await apiClient.get(endpoint);
     return res.data;
   } catch (error) {
-    console.log("Api Get Request Failed >> ", error);
-    throw new Error(error);
+    handleApiError(error, "Get");
   }
 };
 
@@ -23,7 +27,7 @@ export const postApiData = async (data, endpoint = "") => {
     const res = await apiClient.post(endpoint, data);
     return res.data;
   } catch (error) {
-    console.log("Post Request Failed >> ", error);
+    handleApiError(error, "Post");
   }
 };
 export const updateApiData = async (data, endpoint = "") => {
@@ -31,7 +35,7 @@ export const updateApiData = async (data, endpoint = "") => {
     const res = await apiClient.patch(endpoint, data);
     return res.data;
   } catch (error) {
-    console.log("Update Request Failed >> ", error);
+    handleApiError(error, "Update");
   }
 };
 export const deleteApiData = async (endpoint = "") => {
@@ -39,6 +43,6 @@ export const deleteApiData = async (endpoint = "") => {
     const res = await apiClient.delete(endpoint);
     return res.data;
   } catch (error) {
-    console.log("Delete Request Failed >> ", error);
+    handleApiError(error, "Delete");
   }
 };

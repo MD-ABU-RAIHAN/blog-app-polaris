@@ -1,7 +1,8 @@
 import { Box, Text, Button, ButtonGroup, InlineStack } from "@shopify/polaris";
 import { useNavigate } from "react-router-dom";
-import AddNewBlogModal from "./Modals/AddNewBlogModal";
+import AddNewBlogModal from "../Modals/AddNewBlogModal";
 import { useState } from "react";
+import WysiwygEditor from "../WysiwygEditor/WysiwygEditor";
 
 const Navbar = () => {
   const [isShowAddModal, setIsShowAddModal] = useState(false);

@@ -6,8 +6,8 @@ import {
   Layout,
   Text,
 } from "@shopify/polaris";
+import useBlogsContext from "../../hooks/useBlogsContext";
 import BlogCard from "./BlogCard";
-import useBlogsContext from "../hooks/useBlogsContext";
 
 const BlogList = () => {
   const { blogs } = useBlogsContext();

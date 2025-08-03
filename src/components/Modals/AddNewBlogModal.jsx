@@ -4,6 +4,7 @@ import BlogObject from "../../utils/BlogObject";
 import { useState } from "react";
 import { postApiData } from "../../services/api";
 import useBlogsContext from "../../hooks/useBlogsContext";
+import WysiwygEditor from "../WysiwygEditor/WysiwygEditor";
 
 const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
   const [newBlog, setNewBlog] = useState({
@@ -86,7 +87,7 @@ const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
             type="url"
             autoComplete="off"
           />
-          <TextField
+          {/* <TextField
             requiredIndicator
             type="text"
             label="Description"
@@ -94,7 +95,9 @@ const AddNewBlogModal = ({ isShowAddModal, setIsShowAddModal }) => {
             value={newBlog.description}
             onChange={(v) => onChangeHandler("description", v)}
             autoComplete="off"
-          />
+          /> */}
+          <WysiwygEditor onChangeHandler={onChangeHandler} newBlog={newBlog} />
+
           {error && <span className="text-red-700 text-center">{error}</span>}
         </FormLayout>
       </Modal.Section>
